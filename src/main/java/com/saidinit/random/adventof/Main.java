@@ -5,10 +5,20 @@ import com.saidinit.random.adventof.day1.Day1Part2;
 import com.saidinit.random.adventof.day2.Day2;
 import com.saidinit.random.adventof.day3.Day3;
 import com.saidinit.random.adventof.day3.Day3Part2;
+import com.saidinit.random.adventof.day4.Day4;
+import com.saidinit.random.adventof.day4.Day4Part2;
 
 public class Main {
 
 	public static void main(String[] args) {
+		Day4 day4 = new Day4();
+		System.out.println("There are this many ok: " + day4.howManyAreOk());
+
+		Day4Part2 day4part2 = new Day4Part2();
+		System.out.println("There are this many ok: " + day4part2.howManyAreOk());
+	}
+
+	private static void oldMains() {
 		Day1 day1 = new Day1();
 
 		System.out.println("Day1: " + day1.getFuel());
