@@ -2,6 +2,8 @@ package com.saidinit.random.adventof.day1;
 
 import java.util.stream.Collectors;
 
+import com.saidinit.random.adventof.utils.ReadInput;
+
 public class Day1 {
 	/**
 	 * At the first Go / No Go poll, every Elf is Go until the Fuel Counter-Upper.
@@ -20,9 +22,9 @@ public class Day1 {
 	 * puzzle input), then add together all the fuel values.
 	 */
 
-	protected int getFuel() {
+	public int getFuel() {
 
-		return ReadInput.getDayInput().stream().map(l -> calculateFuel(Integer.valueOf(l))).collect(Collectors.toList())
+		return ReadInput.getDay1Input().stream().map(l -> calculateFuel(Integer.valueOf(l))).collect(Collectors.toList())
 				.stream().mapToInt(Integer::intValue).sum();
 	}
 

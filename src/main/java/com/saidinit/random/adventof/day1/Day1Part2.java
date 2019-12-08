@@ -2,6 +2,8 @@ package com.saidinit.random.adventof.day1;
 
 import java.util.stream.Collectors;
 
+import com.saidinit.random.adventof.utils.ReadInput;
+
 public class Day1Part2 {
 
 	/**
@@ -13,8 +15,8 @@ public class Day1Part2 {
 	 * outside the scope of this calculation.
 	 */
 
-	protected int getFuel() {
-		return ReadInput.getDayInput().stream().map(l -> calculateFuel(Integer.valueOf(l))).collect(Collectors.toList())
+	public int getFuel() {
+		return ReadInput.getDay1Input().stream().map(l -> calculateFuel(Integer.valueOf(l))).collect(Collectors.toList())
 				.stream().mapToInt(Integer::intValue).sum();
 	}
 
