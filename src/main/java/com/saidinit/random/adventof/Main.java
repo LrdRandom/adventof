@@ -3,6 +3,8 @@ package com.saidinit.random.adventof;
 import com.saidinit.random.adventof.day1.Day1;
 import com.saidinit.random.adventof.day1.Day1Part2;
 import com.saidinit.random.adventof.day2.Day2;
+import com.saidinit.random.adventof.day3.Day3;
+import com.saidinit.random.adventof.day3.Day3Part2;
 
 public class Main {
 
@@ -21,6 +23,11 @@ public class Main {
 
 		// day2part2 is on a unit test
 
+		Day3 day3 = new Day3();
+		System.out.println("Day3: " + day3.solve());
+
+		Day3Part2 day3part2 = new Day3Part2();
+		System.out.println("Day3Part2 " + day3part2.solve());
 	}
 
 }

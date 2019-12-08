@@ -33,11 +33,42 @@ public class ReadInput {
 		try {
 			inputList = Files.readAllLines(Paths.get(fileName));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return Arrays.stream(inputList.get(0).split(",")).mapToInt(Integer::parseInt).toArray();
 
+	}
+
+	public static List<List<String>> getDay3Input() {
+		String fileName = "D:\\Documents\\My Projects\\workspace\\day1\\src\\main\\resources\\day3input.txt";
+
+		List<String> inputList = new ArrayList<>();
+		try {
+			inputList = Files.readAllLines(Paths.get(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		List<List<String>> ret = new ArrayList<>();
+
+		ret.add(Arrays.asList(inputList.get(0).split(",")));
+		ret.add(Arrays.asList(inputList.get(1).split(",")));
+		return ret;
+	}
+
+	public static List<String> getDay3Input2() {
+		String fileName = "D:\\Documents\\My Projects\\workspace\\day1\\src\\main\\resources\\day3input.txt";
+		List<String> ret = new ArrayList<>();
+
+		// read file into stream, try-with-resources
+		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+
+			stream.forEach(ret::add);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return ret;
 	}
 }
