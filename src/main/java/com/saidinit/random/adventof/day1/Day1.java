@@ -22,7 +22,7 @@ public class Day1 {
 
 	protected int getFuel() {
 
-		return ReadInput.getLines().stream().map(l -> calculateFuel(Integer.valueOf(l))).collect(Collectors.toList())
+		return ReadInput.getDayInput().stream().map(l -> calculateFuel(Integer.valueOf(l))).collect(Collectors.toList())
 				.stream().mapToInt(Integer::intValue).sum();
 	}
 

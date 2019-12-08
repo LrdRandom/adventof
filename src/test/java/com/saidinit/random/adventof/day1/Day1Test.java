@@ -1,4 +1,4 @@
-package day1com.saidinit.random.adventof.day1;
+package com.saidinit.random.adventof.day1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -9,8 +9,8 @@ import java.util.stream.Stream;
 
 public class ReadInput {
 
-	protected static List<String> getLines() {
-		String fileName = "D:\\Documents\\My Projects\\workspace\\day1\\src\\main\\resources\\input.txt";
+	protected static List<String> getDayInput() {
+		String fileName = "D:\\Documents\\My Projects\\workspace\\day1\\src\\main\\resources\\day1input.txt";
 		List<String> ret = new ArrayList<>();
 
 		// read file into stream, try-with-resources
