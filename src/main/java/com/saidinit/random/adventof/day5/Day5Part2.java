@@ -17,6 +17,14 @@ public class Day5Part2 {
 	private int cursor = 0;
 	private int output = 5; // the first instruction is 5
 
+	public int getOutput() {
+		return output;
+	}
+
+	public void setOutput(int output) {
+		this.output = output;
+	}
+
 	private void sum(int[] array, int modeOp1, int modeOp2) {
 		int operator1 = 0;
 		int operator2 = 0;
@@ -66,7 +74,8 @@ public class Day5Part2 {
 			cursor += 2;
 			return array[position];
 		} else {
-			cursor += 2; // since we have to plus it here, insetad of cursor +1 next, it will be -1
+			cursor += 2; // since we have to plus it here, insetad of cursor +1
+							// next, it will be -1
 			return array[cursor - 1];
 		}
 
@@ -140,7 +149,8 @@ public class Day5Part2 {
 		}
 	}
 
-	// not want to name it equals in case it does override instead of overloading
+	// not want to name it equals in case it does override instead of
+	// overloading
 	public void opEquals(int[] array, int modeOp1, int modeOp2) {
 		int operator1 = 0;
 		int operator2 = 0;

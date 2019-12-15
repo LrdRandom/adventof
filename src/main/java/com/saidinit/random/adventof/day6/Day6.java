@@ -2,10 +2,8 @@ package com.saidinit.random.adventof.day6;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.saidinit.random.adventof.utils.ReadInput;
 
@@ -50,57 +48,100 @@ public class Day6 {
 			totalSatellite += p.getSatCount();
 		}
 
-		System.out.println("orbits: " + totalOrbits); // this is the right answer
+		System.out.println("orbits: " + totalOrbits); // this is the right
+														// answer
 		System.out.println("satellite: " + totalSatellite);
 	}
 
 	public void findSanta() {
 		// this doesnt work
 		/*
-		 * Set<Integer> jumps = new HashSet<>(); Set<String> searchedPlanets = new
-		 * HashSet<>(); Planet you = planets.get("YOU"); int jump = you.searchElement(0,
-		 * "SAN", jumps, searchedPlanets).stream().sorted().findFirst().get();
+		 * Set<Integer> jumps = new HashSet<>(); Set<String> searchedPlanets =
+		 * new HashSet<>(); Planet you = planets.get("YOU"); int jump =
+		 * you.searchElement(0, "SAN", jumps,
+		 * searchedPlanets).stream().sorted().findFirst().get();
 		 * 
 		 * System.out.println("number of jumps " + jump);
 		 */
 
-		// new plan, the latest intersection between the travel from YOU to CON and from
+		// new plan, the latest intersection between the travel from YOU to CON
+		// and from
 		// SAN to CON
 		// will be the quickest way to connect each other (I hope).
-		// we get a list of planets from YOU to CON and from SAN to CON (we know YOU has
+		// we get a list of planets from YOU to CON and from SAN to CON (we know
+		// YOU has
 		// no satellites)
 		// we get the latest intersection on each, we count what is remaining
 		// we also know SAN doesn't have any satellites
-		Planet san = planets.get("SAN");
-		Planet you = planets.get("YOU");
-		List<Planet> lp1 = new ArrayList<>();
-		lp1.add(san);
-		List<Planet> lp2 = new ArrayList<>();
-		lp2.add(you);
-
-		Integer jumps = something(lp1, lp2, 0);
-		System.out.println("Number of jumps: " + jumps);
-		Set<String> allJumps = new HashSet<>();
-		for (int i = 0; i < lp1.size(); i++) {
-			allJumps.add(lp1.get(i).getName());
-		}
-
-		lp1.clear();
-		for (int i = 0; i < lp2.size(); i++) {
-			allJumps.add(lp2.get(i).getName());
-		}
-
-		lp2.clear();
-		allJumps.remove("SAN");
-		allJumps.remove("YOU");
-		allJumps.forEach(p -> System.out.println(p));
-		System.out.println(allJumps.size() - 1);
-		// 394 was too high, weird. (also 393, just in case I missed on less someway)
+		/*
+		 * Planet san = planets.get("SAN"); Planet you = planets.get("YOU");
+		 * List<Planet> lp1 = new ArrayList<>(); lp1.add(san); List<Planet> lp2
+		 * = new ArrayList<>(); lp2.add(you);
+		 * 
+		 * Integer jumps = something(lp1, lp2, 0);
+		 * System.out.println("Number of jumps: " + jumps); Set<String> allJumps
+		 * = new HashSet<>(); for (int i = 0; i < lp1.size(); i++) {
+		 * allJumps.add(lp1.get(i).getName()); }
+		 * 
+		 * lp1.clear(); for (int i = 0; i < lp2.size(); i++) {
+		 * allJumps.add(lp2.get(i).getName()); }
+		 * 
+		 * lp2.clear(); allJumps.remove("SAN"); allJumps.remove("YOU");
+		 * allJumps.forEach(p -> System.out.println(p));
+		 * System.out.println(allJumps.size() - 1);
+		 */
+		// 394 was too high, weird. (also 393, just in case I missed on less
+		// someway)
 		/*
 		 * loadFromSanToCom(); loadFromYouToCom(); fromYouToCom.forEach(p ->
 		 * System.out.println(p.getName())); fromSanToCom.forEach(p ->
 		 * System.out.println(p.getName()));
 		 */
+
+		somethingelse();
+	}
+
+	private void somethingelse() {
+		Planet san = planets.get("SAN");
+		Planet you = planets.get("YOU");
+		String nextPlanet;
+		List<String> pathSanToCom = new ArrayList<>();
+		List<String> pathYouToCom = new ArrayList<>();
+		System.out.println("Planets from SAN to COM:");
+		nextPlanet = san.getOrbit().getName();
+		do {
+
+			nextPlanet = planets.get(nextPlanet).getOrbit().getName();
+			// System.out.print(nextPlanet + "-");
+			pathSanToCom.add(nextPlanet);
+		} while (!nextPlanet.equals("COM"));
+
+		System.out.println("\nPlanets from YOU to COM:");
+		nextPlanet = you.getOrbit().getName();
+		do {
+			nextPlanet = planets.get(nextPlanet).getOrbit().getName();
+			// System.out.print(nextPlanet + "-");
+			pathYouToCom.add(nextPlanet);
+		} while (!nextPlanet.equals("COM"));
+
+		int jumps = 0;
+		for (int i = 0; i < pathSanToCom.size(); i++) {
+			String pl = pathSanToCom.get(i);
+			if (pathYouToCom.contains(pl)) {
+				jumps += i;
+				break;
+			}
+		}
+		System.out.println("jumps: " + jumps);
+		for (int i = 0; i < pathYouToCom.size(); i++) {
+			String pl = pathYouToCom.get(i);
+			if (pathSanToCom.contains(pl)) {
+				jumps += i;
+				break;
+			}
+		}
+		System.out.println("jumps: " + jumps); // 350 nope
+
 	}
 
 	private int something(List<Planet> lp1, List<Planet> lp2, Integer jumps) {
@@ -131,15 +172,15 @@ public class Day6 {
 	}
 
 	/*
-	 * private List<Planet> loadFromYouToCom() { Planet you = planets.get("YOU");
-	 * Planet orbit = you.getOrbit(); while (!orbit.getName().equals("COM")) {
-	 * fromYouToCom.add(you); loadFromYouToCom(); } fromYouToCom.add(you); return
-	 * fromSanToCom; }
+	 * private List<Planet> loadFromYouToCom() { Planet you =
+	 * planets.get("YOU"); Planet orbit = you.getOrbit(); while
+	 * (!orbit.getName().equals("COM")) { fromYouToCom.add(you);
+	 * loadFromYouToCom(); } fromYouToCom.add(you); return fromSanToCom; }
 	 * 
-	 * private List<Planet> loadFromSanToCom() { Planet you = planets.get("SAN");
-	 * Planet orbit = you.getOrbit(); while (!orbit.getName().equals("COM")) {
-	 * fromSanToCom.add(you); loadFromSanToCom(); } fromSanToCom.add(you); return
-	 * fromSanToCom; }
+	 * private List<Planet> loadFromSanToCom() { Planet you =
+	 * planets.get("SAN"); Planet orbit = you.getOrbit(); while
+	 * (!orbit.getName().equals("COM")) { fromSanToCom.add(you);
+	 * loadFromSanToCom(); } fromSanToCom.add(you); return fromSanToCom; }
 	 */
 
 }

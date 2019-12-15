@@ -87,7 +87,7 @@ public class ReadInput {
 	}
 
 	public static List<String> getDay6Input() {
-		String fileName = "D:\\Documents\\My Projects\\workspace\\day1\\src\\main\\resources\\day6input.txt";
+		String fileName = "D:\\JavaCode\\workspace\\adventof\\src\\main\\resources\\day6input.txt";
 		List<String> ret = new ArrayList<>();
 
 		// read file into stream, try-with-resources
@@ -101,4 +101,34 @@ public class ReadInput {
 
 		return ret;
 	}
+
+	public static int[] getDay7Input() {
+		String fileName = "D:\\JavaCode\\workspace\\adventof\\src\\main\\resources\\day7input.txt";
+
+		List<String> inputList = new ArrayList<>();
+		try {
+			inputList = Files.readAllLines(Paths.get(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return Arrays.stream(inputList.get(0).split(",")).mapToInt(Integer::parseInt).toArray();
+	}
+
+	public static List<String> getDay8Input() {
+		String fileName = "D:\\JavaCode\\workspace\\adventof\\src\\main\\resources\\day8input.txt";
+		List<String> ret = new ArrayList<>();
+
+		// read file into stream, try-with-resources
+		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+
+			stream.forEach(ret::add);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return ret;
+	}
+
 }

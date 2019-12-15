@@ -27,7 +27,8 @@ public class Planet {
 		return sat.size();
 	}
 
-	// this searches all orbits and satellites of those orbits, but it doesn't do
+	// this searches all orbits and satellites of those orbits, but it doesn't
+	// do
 	// multiple satellites down
 	public Set<Integer> searchElement(int jumps, String name, Set<Integer> jumpList,
 			Set<String> alreadySearchedPlanets) {
