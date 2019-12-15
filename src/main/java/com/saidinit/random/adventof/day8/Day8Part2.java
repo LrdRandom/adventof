@@ -9,6 +9,7 @@ import java.util.List;
 import com.saidinit.random.adventof.utils.ReadInput;
 
 public class Day8Part2 {
+
 	// 25 pixels wide and 6 pixels tall
 
 	// int[][] picture = new int[6][25]; // 150 ints per picture
@@ -40,19 +41,17 @@ public class Day8Part2 {
 		Integer[][] finalPicture = new Integer[6][25];
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 25; j++) {
-				finalPicture[i][j] = 3;
+				finalPicture[i][j] = 2;
 			}
 		}
 
 		for (int k = 0; k < 100; k++) {
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 25; j++) {
-					int index = j + (i * 25);
-					Character c = (firstStep.get(k).charAt(index));
 					int realValue = finalPicture[i][j];
-					int auxValue = Integer.valueOf(c.toString());
-					if (auxValue < realValue) {
-						finalPicture[i][j] = Integer.valueOf(c.toString());
+					int auxValue = pictures.get(k)[i][j];
+					if (realValue == 2 && auxValue != 2) {
+						finalPicture[i][j] = auxValue;
 					}
 				}
 			}
@@ -64,9 +63,9 @@ public class Day8Part2 {
 				if (finalValue == 2) {
 					System.out.print(" ");
 				} else if (finalValue == 1) {
-					System.out.print("·");
+					System.out.print(" ");
 				} else {
-					System.out.print("o");
+					System.out.print("â–ˆ");
 				}
 			}
 			System.out.print("\n");

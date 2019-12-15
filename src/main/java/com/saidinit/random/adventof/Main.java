@@ -25,7 +25,7 @@ public class Main {
 		// 3000 is too high
 
 		Day8Part2 day8Part2 = new Day8Part2();
-		day8Part2.printPicture();
+		day8Part2.printPicture(); // H Z C Z U
 	}
 
 	private static void oldMains() {
